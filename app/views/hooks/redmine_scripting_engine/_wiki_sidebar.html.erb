@@ -1,0 +1,6 @@
+<%- if User.current.admin? %>
+<h3><%= l(:label_import_export) %></h3>
+<ul>
+  <li><%= link_to(l(:field_start_page), project_wiki_ports_path(@project, :page_id => @page.try(:id) )) %></li>
+</ul>
+<% end %>

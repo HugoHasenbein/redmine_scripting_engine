@@ -1,0 +1,7 @@
+<p><%= form.text_area :script, :rows => 7, :label => :label_wikiscript, :placeholder => <<-EOF
+# comment: args has an additional custom_value entry 
+custom_value: { custom_field: Digger.new(custom_value.custom_field).dig, 
+value: custom_value.value, html:  html
+EOF
+%></p>
+<p><%= form.select :script_type, [RSE_SUPPORTED_TYPES.map(&:humanize), RSE_SUPPORTED_TYPES].transpose, :include_blank => :field_type, :label => :field_type %></p>

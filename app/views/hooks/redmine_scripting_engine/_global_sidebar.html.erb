@@ -1,0 +1,119 @@
+<%- if User.current.allowed_to?(:run_scripts, project) || User.current.allowed_to?(:run_red_scripts, project)
+    
+    # dont show links on ScriptsController page
+    # to prevent :back param becoming excessively large
+    return nil if controller.is_a?(ScriptsController) 
+    
+    ##
+    #
+    # find variables in view
+    # we have: project, controller, request, :hook_caller
+    #
+    # here we could add the id(s) of the current object(s)
+    # of the controller, but that does not always work
+    #
+    #   1. not all controller name their object
+    #      in a predictive way, f.i.
+    #      TimelogController
+    #      model_object: TimeEntry
+    #      model_variable: @entry / @entries
+    #      
+    #   2. even if the objects can be guessed
+    #      there is no guarantee, the objects 
+    #      can easily be retrievged with ids, f.i.
+    #      ActivitiesController
+    #      model_object: Redmine::Activity::Fetcher
+    #      model_variable: @activity, @events_by_day
+    # 
+    
+    ##
+    # find matching scripts
+    wikiscripts = class_wikiscripts(controller.class.name, {:project => project, :status => request.params[:action]}.compact )
+    
+    ##
+    # select wikiscript by permission
+    wikiscripts.select!{|w| !w.permission_required? || w.permitted?(project) }
+    
+    ##
+    # find current query
+    back = request.original_url
+    
+    ##
+    # set obj to controller
+    obj = controller
+    
+    scripts = wikiscripts.map do |script|
+      [script,
+      if script.modal?
+        modal_tag_id = SecureRandom.uuid + "_modal"
+        modal_form_partial = textilizable(script.modal, :object => obj, :headings => false)
+        
+        modal_other_params = CGI.unescape({
+              :object  => {:class => "WikiPage", :id => script.page_id},
+              :eparams => request.params,
+              :each    => (script.each? ? 1 : nil),
+              :sync    => (script.sync? ? 1 : nil),
+              :back    => back
+            }.to_query).split(/&/).map{|kv| k,v = kv.split(/\=/); hidden_field_tag(k, v)}.join.html_safe
+            
+        modal = content_tag(:div, :id => "#{modal_tag_id}", :style => "display:none;") do
+          form_tag( 
+            run_project_script_path(project.identifier, script.id),
+            :method   => :get,
+            :data     => script.danger? ? {:confirm => l(:text_are_you_sure)} : nil,
+            :onsubmit => "hideModal(this);".html_safe
+          ) do
+            content_tag(:div, :class => "box tabular") do
+              modal_form_partial + modal_other_params
+            end + submit_tag(l(:button_submit))
+          end 
+        end
+        
+        link_to( script.title, "", :onclick => "showModal('#{modal_tag_id}', '600px'); return false;") + modal
+        
+      else
+        ##############################################################################
+        # just build link
+        ##############################################################################
+        link_to( 
+          script.title, 
+          run_project_script_path(
+            :project_id => project.identifier,
+            :id         => script.id, 
+            :object     => {:class => "WikiPage", :id => script.page_id},
+            :eparams    => request.params,
+            :each       => (script.each? ? 1 : nil),
+            :sync       => (script.sync? ? 1 : nil),
+            :back       => back
+          ), 
+          :data     => script.danger? ? {:confirm => l(:text_are_you_sure)} : nil
+        ) 
+      end
+      ]
+    end.to_h
+  %>
+  <% if wikiscripts.present? %>
+  <h3><%= link_to l(:label_wikiscripts), project_scripts_path(project.identifier) %> (<%= "#{controller.class.name}" %>)</h3>
+  <% else %>
+  <h3><%= l(:label_wikiscripts) %> (<%= "#{controller.class.name}" %>)</h3>
+  <% end %>
+  
+  <%- if User.current.allowed_to?(:run_scripts, project) %>
+    <ul id="wikiscripts-menu">
+    <% scripts.select{|script, link| script.green?}.each do |script, link| %>
+    <li class="icon icon-script"><%= link %>
+    <%= link_to( "", edit_project_wiki_page_path(script.project.identifier, script.title), :class => "icon icon-edit") if script.editable %>
+    </li>
+    <%- end %>
+    </ul>
+  <%- end %>
+  <%- if User.current.allowed_to?(:run_red_scripts, project) %>
+    <ul id="wikiscripts-menu">
+    <% scripts.select{|script, link| script.red?}.each do |script, link| %>
+    <li class="icon icon-danger-script"><%= link %>
+    <%= link_to( "", edit_project_wiki_page_path(script.project.identifier, script.title), :class => "icon icon-edit") if script.editable %>
+    </li>
+    <%- end %>
+    </ul>
+  <%- end %>
+<%- end %>

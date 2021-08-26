@@ -1,0 +1,106 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+jp:
+  # ---------- General Settings --------------
+  # Plugin names, etc.
+  project_module_redmine_scripting_engine: "スクリプトエンジン"
+  
+  # ---------- Plugin Settings ---------------
+  label_wikiscripts_root:                  "ウィキスクリプトのルートページ"
+  help_wikiscripts_root:                   "ウィキスクリプトが置かれているウィキページ"
+  help_lock_wikiscripts:                   "すべてのWikiscriptページをロックする"
+  label_inherit_wikiscripts:               "祖先のプロジェクトからウィキスクリプトを継承する"
+  help_inherit_wikiscripts:                "プロジェクト階層内でウィキスクリプトを継承すべきか？"
+  label_forbidden_attributes:              "フィールドフィルタ"
+  help_forbidden_attributes:               "パスワードなどのセキュリティ関連情報を持つフィールドをフィルタリングするグローバルフィルタ"
+  help_issues_context_menu:                "インデックスビューで課題のコンテキストメニューのウィキスクリプトを有効にする"
+  label_time_entries:                      "タイムエントリー"
+  label_associations:                      "データベースの関連付け"
+  label_enable_html:                       "HTMLを有効にする"
+  help_enable_html:                        "ウィキスクリプトやマクロの出力フォーマットとしてHTMLを有効にする"
+  label_enable_mime:                       "MIMEを有効にする"
+  help_enable_mime:                        "ウィキスクリプトやマクロの出力フォーマットとしてMIMEを有効にする"
+  help_time_entries_context_menu:          "インデックスビューでタイムエントリーのコンテキストメニューを有効にする"
+  help_repositories_context_menu:          "リポジトリ用ウィキスクリプトを起動、右上隅"
+  help_contacts_context_menu:              "コンタクト用のウィキスクリプトを有効化（Redmine CRMプラグイン）"
+  help_issue_attachments_context_menu:     "課題の添付ファイルのウィキスクリプトを有効にする (Redmine Issue Attachments Plugin)"
+  help_associations_select:                "ウィキスクリプトで利用可能にするデータベースの関連付けを選択します。プラグインによっては、セキュリティ関連のデータが含まれている可能性があり、表示されるべきではないデータベースの関連付けが追加されることがあります。マークのついたデータベースアソシエーションの利用可能性は、ユーザーのアクセス権によって制限されます。"
+  help_attributes_filter:                  "引数として渡してはいけない属性のブラックリスト、例：パスワード。スペース、セミコロン、カンマで区切って入力してください。"
+  help_site_password:                      "Redmineの前に入力しなければならないサイトのパスワード（.htpasswdなどで設定されている）"
+  help_site_user:                          "Redmineの前に入力しなければならないサイトユーザー（.htpasswdなどで設定されている）"
+  help_wikiscripts_export:                 "プロジェクトのすべてのwikiscriptsを圧縮ファイルとしてエクスポート"
+  help_wikiscripts_import:                 "以前にエクスポートされたウィキスクリプトをインポートする"
+  help_unregister_class:                   "クラスの登録解除"
+    
+  # ---------- Permission Settings -----------
+  # Permission settings in Administration -> Roles and Permissions
+  permission_run_scripts:                  "グリーンスクリプトの実行"
+  permission_run_red_scripts:           "Redscriptsを実行"
+  permission_run_html_scripts:             "HTMLスクリプトの実行"
+  permission_run_mime_scripts:             "MIMEスクリプトの実行"
+  permission_run_tries:                    "スクリプトのテスト"
+  
+  permission_run_snippets:                 "スニペットの実行"
+  permission_run_fiddles:                  "フィドルの実行" 
+  permission_run_html_fiddles:             "htmlを動かす"  
+  permission_run_mime_fiddles:             "mimeを動かす"
+  
+  # ---------- Labels ------------------------
+  label_wikiscript:                        "Wikiscript"
+  label_wikiscripts:                       "Wikiscripts"
+  label_snippet:                           "Snippet"
+  label_fiddle:                            "Fiddle"
+  label_context_menus:                     "コンテキストメニュー"
+  label_scripts:                           "グリーンスクリプト"
+  label_no_scripts:                        "グリーンスクリプト"
+  label_danger_scripts:                    "レッドスクリプト"
+  label_no_danger_scripts:                 "No Redscripts"
+  label_import_export:                     "インポート/エクスポート"
+  
+  label_red:                               "レッド"
+  label_green:                             "グリーン"
+  label_ran_script_at_singular:            "Ran %{level}script '%{name}' with one %{model}"
+  label_ran_script_at_plural:              "Ran %{level}script '%{name}' with %{count} %{model}"
+  label_ran_script:                        "Ran %{level}script '%{name}'"
+  
+  # ---------- Notices ------------------------
+  notice_inapproriate_type:                "不適切な呼び出し"
+  notice_syntax_not_supported:             "「%{言語}」の言語構文はサポートされていません"
+  notice_code_not_runnable:                "'%{言語}'の実行はサポートされていません"
+  notice_only_wikipage_supported:          "このマクロはwikiページでのみ動作します"
+  notice_invalid_file:                     "ファイルが有効ではありません"
+  notice_file_imported:                    "ウィキスクリプトが正常に取り込まれる"
+  notice_html_not_permitted:               "HTML-Fiddlesの実行は許可されていません"  
+  notice_mime_not_permitted:               "MIME-Fiddlesの実行は許可されていません"
+  notice_class_is_not_a_model:             "クラス %{klass} は、データベース・モデルではありません"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "試す"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "EmptyClass"
+  label_empty_classes:                     "EmptyClasses"
+  label_empty_class_plural:                "EmptyClasses"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "ウィキコンテンツ"
+  label_journal_plural:                    "ジャーナル"

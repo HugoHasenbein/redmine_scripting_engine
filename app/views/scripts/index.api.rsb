@@ -1,0 +1,20 @@
+api.array :scripts, api_meta(:total_count => @script_count, :offset => @offset, :limit => @limit) do
+  @scripts.each do |script|
+    api.script do
+    
+      api.id          script.id
+      api.type        script.type
+      api.title       script.title
+      api.klass       script.klass
+      api.status      script.status
+      api.permission  script.permission
+      api.mime        script.mime
+      api.ext         script.ext
+      api.red         script.red?
+      api.modal       script.modal?
+      api.script      script.script
+      api.author_id   script.author_id
+      
+    end
+  end
+end

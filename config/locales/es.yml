@@ -1,0 +1,106 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+es:
+  # ---------- Configuración general --------------
+  # Nombres de plugins, etc.
+  project_module_redmine_scripting_engine: "Motor de scripting"
+  
+  # ---------- Configuración de los plugins ---------------
+  label_wikiscripts_root:                  "Página raíz de Wikiscripts"
+  help_wikiscripts_root:                   "Página wiki bajo la que se encuentran los wikiscripts"
+  label_inherit_wikiscripts:               "Heredar los wikiscripts de los proyectos antecesores"
+  help_lock_wikiscripts:                   "Bloquear todas las páginas de Wikiscript"
+  help_inherit_wikiscripts:                "¿Deben heredarse los wikiscripts dentro de la jerarquía del proyecto?"
+  label_forbidden_attributes:              "Filtro de campo"
+  help_forbidden_attributes:               "Filtro global para filtrar los campos con información relevante para la seguridad, por ejemplo, la contraseña"
+  help_issues_context_menu:                "Activar los Wikiscripts para el menú contextual de las cuestiones en la vista de índice"
+  label_time_entries:                      "Entradas de tiempo"
+  label_associations:                      "Asociaciones de la base de datos"
+  label_enable_html:                       "Habilitar HTML"
+  help_enable_html:                        "Habilitar MIME como formato de salida en wikiscripts y macros"
+  label_enable_mime:                       "Habilitar MIME"
+  help_enable_mime:                        "Habilitar MIME como formato de salida en wikiscripts y macros"
+  help_time_entries_context_menu:          "Activar el menú contextual de Wikiscripts para las entradas de tiempo en la vista de índice"
+  help_repositories_context_menu:          "Activar Wikiscripts para Repositorios, esquina superior derecha"
+  help_contacts_context_menu:              "Activar Wikiscripts para Contactos (Plugin CRM de Redmine)"
+  help_issue_attachments_context_menu:     "Activar Wikiscripts para adjuntos de incidencias (plugin de adjuntos de incidencias de Redmine)"
+  help_associations_select:                "Selecciona las asociaciones de base de datos que deben estar disponibles en el wiki script. Dependiendo del plugin, se pueden añadir asociaciones de bases de datos que pueden contener datos relevantes para la seguridad y que no deberían ser visibles. La disponibilidad de las asociaciones de bases de datos marcadas con * está limitada por los derechos de acceso del usuario."
+  help_attributes_filter:                  "Lista negra de atributos que no deben pasarse como argumentos, por ejemplo, la contraseña. Escriba una lista separada por espacios, punto y coma o comas"
+  help_site_password:                      "Contraseña del sitio que debe introducirse antes de Redmine (como se establece en .htpasswd, por ejemplo)"
+  help_site_user:                          "Usuario del sitio que debe ser introducido antes de Redmine (como se establece en .htpasswd, por ejemplo)"
+  help_wikiscripts_export:                 "Exportar todos los wikiscripts de un proyecto como un archivo comprimido"
+  help_wikiscripts_import:                 "Importar los wikiscripts que han sido exportados previamente"
+  help_unregister_class:                   "Anular el registro de la clase"
+  
+  # ---------- Configuración de permisos -----------
+  # Configuración de permisos en Administración -> Roles y Permisos
+  permission_run_scripts:                  "Ejecutar Greenscripts"
+  permission_run_red_scripts:           "Ejecutar Redscripts"
+  permission_run_html_scripts:             "Ejecutar HTML-scripts"
+  permission_run_mime_scripts:             "Ejecutar MIME-scripts"
+  permission_run_tries:                    "Probar scripts"
+  
+  permission_run_snippets:                 "Ejecutar snippets"
+  permission_run_fiddles:                  "Ejecutar chanchullos"
+  permission_run_html_fiddles:             "Ejecutar html-chanchullos"
+  permission_run_mime_fiddles:             "Ejecutar mime-chanchullos"
+  
+  # ---------- Etiquetas ------------------------
+  label_wikiscript:                        "Wikiscript"
+  label_wikiscripts:                       "Wikiscripts"
+  label_snippet:                           "Snippet"
+  label_fiddle:                            "Fiddle"
+  label_context_menus:                     "Menús contextuales"
+  label_scripts:                           "Guiones verdes"
+  label_no_scripts:                        "Sin guiones verdes"
+  label_danger_scripts:                    "Guiones rojos"
+  label_no_danger_scripts:                 "Sin guiones rojos"
+  label_import_export:                     "Importación/exportación"
+  
+  label_red:                               "Rojo"
+  label_green:                             "Verde"
+  label_ran_script_at_singular:            "Corrió guiones%{level} '%{name}' con un %{model}"
+  label_ran_script_at_plural:              "Corrió guiones%{level} '%{name}' con %{count} %{model}"
+  label_ran_script:                        "Corrió guiones%{level} '%{name}'"
+  
+  # ---------- Avisos ------------------------
+  notice_inapproriate_type:                "Llamada inapropiada"
+  notice_syntax_not_supported:             "La sintaxis del idioma '%{language}' no está soportada"
+  notice_code_not_runnable:                "No se admite la ejecución de '%{language}'"
+  notice_only_wikipage_supported:          "Esta macro funciona sólo en páginas wiki"
+  notice_invalid_file:                     "El archivo no es válido"
+  notice_file_imported:                    "Wikiscripts importados con éxito"
+  notice_html_not_permitted:               "La ejecución de HTML-Fiddles no está permitida"
+  notice_mime_not_permitted:               "La ejecución de MIME-Fiddles no está permitida"
+  notice_class_is_not_a_model:             "La clase %{klass} no es un modelo de base de datos"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "Intentar"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "EmptyClass"
+  label_empty_classes:                     "EmptyClasses"
+  label_empty_class_plural:                "EmptyClasses"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "Wiki-Contenidos"
+  label_journal_plural:                    "Diarios"

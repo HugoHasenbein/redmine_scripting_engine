@@ -1,0 +1,92 @@
+<% if user_allowed_to_run_scripts([object]) || user_allowed_to_run_red_scripts([object]) 
+
+  ##
+  # find matching scripts
+  wikiscripts = class_wikiscripts(local_assigns[:class_name], {:project => project}.compact )
+  
+  ##
+  # select wikiscript by permission
+  wikiscripts.select!{|w| !w.permission_required? || w.permitted?(project) }
+  
+  ##
+  # set obj to controller
+  obj = controller
+  
+  scripts = wikiscripts.map do |script|
+    [script,
+    if script.modal?
+      modal_tag_id = SecureRandom.uuid + "_modal"
+      modal_form_partial = textilizable(script.modal, :object => obj, :headings => false)
+      
+      modal_other_params = CGI.unescape({
+            :object => {:class => "WikiPage", :id => script.page_id},
+            :each   => (script.each? ? 1 : nil),
+            :sync   => (script.sync? ? 1 : nil),
+            :back   => @back
+          }.to_query).split(/&/).map{|kv| k,v = kv.split(/\=/); hidden_field_tag(k, v)}.join.html_safe
+          
+      modal = content_tag(:div, :id => "#{modal_tag_id}", :style => "display:none;") do
+        form_tag( 
+          run_project_script_path(project.identifier, script.id),
+          :method  => :get,
+          :onsubmit => "hideModal(this);".html_safe
+        ) do
+          content_tag(:div, :class => "box tabular") do
+            modal_form_partial + modal_other_params
+          end + submit_tag(l(:button_submit))
+        end 
+      end
+      
+      link_to( script.title, "",
+              :class   => script.green? ? "green" : "red",
+              :data    => script.danger? ? {:confirm => l(:text_are_you_sure)} : nil,
+              :onclick => "showModal('#{modal_tag_id}', '600px'); return false;"
+      ) + modal
+      
+    else
+      ##############################################################################
+      # just build link
+      ##############################################################################
+      link_to( 
+        script.title, 
+        run_project_script_path(
+          :project_id => project.identifier,
+          :id         => script.id, 
+          :object     => {:class => "WikiPage", :id => script.page_id},
+          :each       => (script.each? ? 1 : nil),
+          :sync       => (script.sync? ? 1 : nil),
+          :back       => @back
+        ), 
+        :class    => script.green? ? "green" : "red",
+        :data     => script.danger? ? {:confirm => l(:text_are_you_sure)} : nil
+      ) 
+    end
+    ]
+  end.to_h
+%>
+  
+    <!-- scripts -->
+    <% if user_allowed_to_run_scripts([object]) %>
+      <a href="#" class="folder icon icon-script"><%= l(:label_scripts) %></a>
+      <% if (scripts.any?{|script,link|script.green?}) %>
+        <% scripts.select{|script, link| script.green?}.each do |script, link| %>
+          <%= link %>
+        <% end %>
+      <% else %>
+        <a href="#" class="disabled"><%= l(:label_no_scripts) %></a>
+      <% end %>
+    <% end %>
+    
+    <!-- danger scripts -->
+    <% if user_allowed_to_run_red_scripts([object]) %>
+      <a href="#" class="folder icon icon-danger-script"><%= l(:label_danger_scripts) %></a>
+      <% if (scripts.any?{|script,link|script.red?}) %>
+        <% scripts.select{|script, link| script.green?}.each do |script, link| %>
+          <%= link %>
+        <% end %>
+      <% else %>
+        <a href="#" class="disabled"><%= l(:label_no_danger_scripts) %></a>
+      <% end %>
+    <% end %>
+    
+<% end %>

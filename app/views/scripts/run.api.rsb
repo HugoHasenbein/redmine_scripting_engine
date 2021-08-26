@@ -1,0 +1,3 @@
+api.result do
+  api.result @result
+end

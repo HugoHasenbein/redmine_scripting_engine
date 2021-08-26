@@ -1,0 +1,310 @@
+/* ********************************************************* */
+/* additional icons                                          */
+/* ********************************************************* */
+.icon-script {
+    background-image: url(../images/icon-script.png);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 17px;
+    background-position-y: 0px; 
+    background-size: 16px 14px;
+}
+.icon-danger-script {
+    background-image: url(../images/icon-danger-script.png);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 17px;
+    background-position-y: 0px; 
+    background-size: 16px 14px;
+}
+.icon-dead-script {
+    background-image: url(../images/icon-dead-script.png);
+    background-repeat: no-repeat;
+    padding: 4px 4px 4px 17px;
+    background-position-y: 0px; 
+    background-size: 16px 14px;
+}
+/* ********************************************************* */
+/* context menu color                                        */
+/* ********************************************************* */
+#context-menu li.red {
+    background-color: #ffe3e3;
+    border-color: #d88;
+}
+
+#context-menu li.green {
+    background-color: #dfffdf;
+    border-color: #9fcf9f;
+}
+
+.drdn-items a.red {
+    background-color: #ffe3e3;
+    border-color: #d88;
+}
+
+.drdn-items a.green {
+    background-color: #dfffdf;
+    border-color: #9fcf9f;
+}
+
+/* ********************************************************* */
+/* sidebar wikiscript menu                                   */
+/* ********************************************************* */
+ul#wikiscripts-menu li {
+    padding: 0px 0px 0px 20px;
+}
+
+/* ********************************************************* */
+/* notices                                                   */
+/* ********************************************************* */
+div.flash span.red {
+    border-color: darkred;
+}
+div.flash span.red:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  background: Red;
+}
+div.flash span.green {
+    border-color: darkgreen;
+}
+div.flash span.green:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  background: Green;
+}
+
+/* ********************************************************* */
+/* wiki                                                      */
+/* ********************************************************* */
+div.wiki div.pre {
+  margin: 1em 1em 1em 1.6em;
+  padding: 8px;
+  background-color: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 3px;
+  width:auto;
+}
+div.wiki div.none { 
+}
+div.wiki div.left { 
+  float: left; 
+  margin-left: o;
+  margin-right: 2px;
+  width: auto; 
+}
+div.wiki div.right { 
+  float: right; 
+  margin-left: 12px; 
+  margin-right: 0; 
+  width: auto; 
+}
+div.wiki div.center { 
+  text-align: center;
+}
+div.wiki div.inlineblock { 
+  display: inline-block; 
+}
+div.wiki div.inlinetable { 
+  display: inline-table; 
+}
+div.wiki div.clear { 
+  clear: both; 
+}
+
+/* ********************************************************* */
+/* pre classes                                               */
+/* ********************************************************* */
+div.wiki pre.fiddle, div.wiki div.pre.fiddle {
+    background-color: #eeffee;
+}
+
+div.wiki pre.snippet.red, div.wiki div.pre.snippet.red,
+div.wiki pre.fiddle.red,  div.wiki div.pre.fiddle.red, 
+div.wiki pre.try.red,     div.wiki div.pre.try.red
+{
+    background-color: #ffeeee;
+}
+
+div.wiki pre.html, div.wiki div.pre.html {
+    border: 2px solid #ff8080;
+}
+
+div.wiki pre.html, div.wiki div.pre.html {
+    border: 2px solid #ff8080;
+}
+
+.divicon {
+    background-repeat: no-repeat;
+}
+
+div.wiki table.syntaxhl pre {
+    background-color: unset;
+}
+
+/* ********************************************************* */
+/* code legends                                             */
+/* ********************************************************* */
+div.src {
+    position: relative;
+    bottom: 2px;
+    padding: 0px 2px 0px 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    border-radius: 2px;
+    overflow-y: visible;
+}
+div.wiki pre.src {
+    position: relative;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-top: 20px;
+    text-align: left;
+}
+div.wiki pre.button {
+    text-align:left;
+}
+div.wiki div.pre.src {
+    padding-top: 20px;
+    text-align:left;
+    font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace
+}
+pre.api:before, div.api:before {
+    text-decoration: underline;
+}
+
+/* ********************************************************* */
+/* fiddles                                                   */
+/* ********************************************************* */
+pre.fiddle.src-c:before, div.fiddle.src-c:before {
+    content: 'c 🌐';
+    background: #808;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.fiddle.src-perl:before, div.fiddle.src-perl:before {
+    content: 'perl 🌐';
+    background: #00c;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.fiddle.src-python:before, div.fiddle.src-python:before {
+    content: 'python 🌐';
+    background: #080;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.fiddle.src-ruby:before, div.fiddle.src-ruby:before {
+    content: 'ruby 🌐';
+    background: #c00;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.fiddle.src-shell:before, div.fiddle.src-shell:before {
+    content: 'shell 🌐';
+    background: #777;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.fiddle.src:before {
+    position: absolute;
+    top: -10px;
+    padding: 3px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+div.src:before {
+    position: absolute;
+    top: -10px;
+    padding: 3px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* ********************************************************* */
+/* snippets, code, lib                                       */
+/* ********************************************************* */
+pre.src-c:before, div.src-c:before {
+    content: 'c';
+    background: #808;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.src-perl:before, div.src-perl:before {
+    content: 'perl';
+    background: #00c;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.src-python:before, div.src-python:before {
+    content: 'python';
+    background: #080;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.src-ruby:before, div.src-ruby:before {
+    content: 'ruby';
+    background: #c00;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.src-shell:before, div.src-shell:before {
+    content: 'shell';
+    background: #777;
+    color: white;
+    border: 1px solid #e2e2e2;
+}
+pre.src:before, div.src:before {
+    position: absolute;
+    top: -10px;
+    padding: 3px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+/* ********************************************************* */
+/* numbered code                                             */
+/* ********************************************************* */
+.syntaxhl  { background: unset; }
+div.pre table.language  { border: 0px; margin: 0px; }
+table.language { border: 0px;  border-collapse: collapse; width:98%; }
+table.language tbody {font-family:Consolas, Menlo, "Liberation Mono", Courier, monospace; }
+table.language th { border: 1px solid #e2e2e2; background-color: #eee; }
+table.language th.filename { background-color: #e4e4d4; text-align: left; padding:5px;}
+table.language tr.spacing th { text-align:center; }
+table.language tr.spacing td { height: 0.4em; background: #EAF2F5;}
+table.language th.line-num {
+    border: 1px solid #e2e2e2;
+    text-align: right;
+    width: 2%;
+    padding: 0 3px 0 0;
+    color: #999;
+    user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    font-weight:normal;
+}
+table.language th.line-num a {
+    text-decoration: none;
+    color: inherit;
+}
+table.language td.line-code {padding: 0 0 0 4px; border:0px;}
+table.language td.line-code pre {
+    margin: 0px;
+    white-space: pre-wrap;
+    font-family:Consolas, Menlo, "Liberation Mono", Courier, monospace;
+    padding: 0px;
+    border: 0px;
+}
+table.language tr:target th.line-num { background-color:#E0E0E0; color: #777; }
+table.language tr:target td.line-code { background-color:#DDEEFF; }
+

@@ -1,0 +1,107 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+de:
+  # ---------- General Settings --------------
+  # Plugin names, etc.
+  project_module_redmine_scripting_engine: "Scripting-Engine"
+  
+  # ---------- Plugin Settings ---------------
+  label_wikiscripts_root:                  "Wikiskript-Wurzelseite"
+  help_wikiscripts_root:                   "Wikiseite unter der die Wikiskripte angeordnet sind"
+  help_lock_wikiscripts:                   "Alle Wikiscript-Seiten sperren"
+  label_inherit_wikiscripts:               "Wikiskripte vererben"
+  help_inherit_wikiscripts:                "Sollen Wikiskripte innerhalb der Projekt-Hieracrchie vererbt werden?"
+  label_forbidden_attributes:              "Feldfilter"
+  help_forbidden_attributes:               "Globaler Filter, um Felder mit sicherheitsrelevanten Informationen zu filtern, z.B. password"
+  help_issues_context_menu:                "Aktiviere Wikiskripte für Ticket-Kontextmenu in der Listenansicht"
+  label_time_entries:                      "Zeitaufwände"
+  label_associations:                      "Datenbank-Assoziationen"
+  label_enable_html:                       "HTML aktivieren"
+  help_enable_html:                        "In Wikiscripten und Makros HTML als Ausgabeformat aktivieren."
+  label_enable_mime:                       "MIME aktivieren"
+  help_enable_mime:                        "In Wikiscripten und Makros MIME als Ausgabeformat aktivieren."
+  help_time_entries_context_menu:          "Aktiviere Wikiskripte für Zeitaufwand-Kontextmenu in der Listenansicht"
+  help_repositories_context_menu:          "Aktiviere Wikiskripte für Repositories, rechts oben"
+  help_contacts_context_menu:              "Aktiviere Wikiskripte für Kontakte (Redmine CRM Plugin)"
+  help_issue_attachments_context_menu:     "Aktiviere Wikiskripte für Ticket-Dateien (Redmine Issue Attachments Plugin)"
+  help_associations_select:                "Wähle die Datenbank-Assoziationen, die im Wikiskript verfügbar sein können. Je nach Plugin können Datenbank-Assoziationen hinzukommen, in denen gegebebenfalls sicherheitsrelevatnte Daten stehen und nicht einsehbar sein sollen. Die Verfügbarkeit der mit * gekennzeichnete Datenbank-Assoziationen ist durch Zugriffsrechte des Nutzers limitiert."
+  help_attributes_filter:                  "Schwarzliste der Attributes, die nicht als Argumente übergeben werden sollen, z.B. password. Eine durch Leerzeichen, Komma oder Semikolon getrennte Liste eingeben"
+  help_site_password:                      "Site-Kennwort, das vor Redmine eingegeben werden muss (wie z.B. in .htpasswd gesetzt)"
+  help_site_user:                          "Site-Nutzer, der vor Redmine eingegeben werden muss (wie z.B. in .htpasswd gesetzt)"
+  help_wikiscripts_export:                 "Sämtliche Wikiscripte eines Projektes als kompromierte Datei exportieren"
+  help_wikiscripts_import:                 "Wikiscripte importieren, die zuvor exportiert worden sind"
+  help_unregister_class:                   "Klasse löschen"
+  
+  # ---------- Permission Settings -----------
+  # Permission settings in Administration -> Roles and Permissions
+  permission_run_scripts:                  "Grünskripte ausführen"
+  permission_run_red_scripts:           "Rotskripte ausführen"
+  permission_run_html_scripts:             "HTML-Skripte ausführen"
+  permission_run_mime_scripts:             "MIME-Skripte ausführen"
+  permission_run_tries:                    "Scripte testen"
+  
+  permission_run_snippets:                 "Snippets ausführen"
+  permission_run_fiddles:                  "Fiddles ausführen"
+  permission_run_html_fiddles:             "HTML-Fiddles ausführen"
+  permission_run_mime_fiddles:             "MIME-Fiddles ausführen"
+  
+  # ---------- Labels ------------------------
+  label_wikiscript:                        "Wikiskript"
+  label_wikiscripts:                       "Wikiskripte"
+  label_snippet:                           "Snippet"
+  label_fiddle:                            "Fiddle"
+  label_context_menus:                     "Kontextmenues"
+  label_scripts:                           "Grünskripte"
+  label_no_scripts:                        "Keine Grünskripte"
+  label_danger_scripts:                    "Rotskripte"
+  label_no_danger_scripts:                 "Keine Rotskripte"
+  label_import_export:                     "Import/Export"
+  
+  label_red:                               "Rot"
+  label_green:                             "Grün"
+  label_ran_script_at_singular:            "%{level}skript '%{name}' mit einem %{model} ausgeführt"
+  label_ran_script_at_plural:              "%{level}skript '%{name}' mit %{count} %{model} ausgeführt"
+  label_ran_script:                        "%{level}skript '%{name}' ausgeführt" #TODO: translate
+  
+  # ---------- Notices ------------------------
+  notice_inapproriate_type:                "Falscher Aufruf"
+  notice_syntax_not_supported:             "Sprachsyntax von %{language} wird nicht unterstützt"
+  notice_code_not_runnable:                "Ausführen von %{language} wird nicht unterstützt"
+  notice_only_wikipage_supported:          "Dieses Makro funktioniert nur auf Wikiseiten"
+  notice_invalid_file:                     "Datei ist nicht gültig"
+  notice_file_imported:                    "Wikiscripte erfolgreich importiert"
+  notice_html_not_permitted:               "Keine Berechtigung, HTML-Fiddles auszuführen"
+  notice_mime_not_permitted:               "Keine Berechtigung, MIME-Fiddles auszuführen"
+  notice_class_is_not_a_model:             "Klasse %{klass} ist kein Datenbank-Modell"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "Probieren"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "EmptyClass"
+  label_empty_classes:                     "EmptyClasses"
+  label_empty_class_plural:                "EmptyClasses"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "Wiki-Inhalte"
+  label_journal_plural:                    "Journale"
+

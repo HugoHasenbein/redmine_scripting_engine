@@ -1,0 +1,9 @@
+<%- @objects.each do |object| %>
+$('#<%= @model %>-<%= object.id %>').html('<%= escape_javascript( html ) %>');
+$('#<%= @model %>-<%= object.id %>').show();
+<%- end %>
+<%- if @objects.length == 0 %>
+$('#<%= @model %>-0').html('<%= escape_javascript( html ) %>');
+$('#<%= @model %>-0').show();
+<%- end %>
+

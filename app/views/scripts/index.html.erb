@@ -1,0 +1,42 @@
+<% if User.current.allowed_to?(:edit_wiki_pages, @project) &&
+      User.current.allowed_to?(:protect_wiki_pages, @project) &&
+      @wikiscript_root %>
+  <div class="contextual">
+    <%= link_to l(:label_wiki_page_new), new_project_wiki_page_path(@project, :parent => Setting["plugin_redmine_scripting_engine"]["wikiscripts_root"]), :remote => true, :class => 'icon icon-add' %>
+  </div>
+<% end %>
+
+<h2><%= link_to l(:label_wikiscripts), project_wiki_page_path(@project.identifier, @wikiscript_root.title) %></h2>
+
+<div class="autoscroll">
+<table class="list wikiscripts">
+  <thead><tr>
+    <%= wikiscript_sort_header_tag('id',        :caption => "#") %>
+    <%= wikiscript_sort_header_tag('type',      :caption => l(:field_type)) %>
+    <%= wikiscript_sort_header_tag('title',     :caption => l(:field_title)) %>
+    <%= wikiscript_sort_header_tag('klass',     :caption => "Class" ) %>
+    <%= wikiscript_sort_header_tag('status',    :caption => "Status" ) %>
+    <%= wikiscript_sort_header_tag('ext',       :caption => "Ext" ) %>
+    <%= wikiscript_sort_header_tag('red',       :caption => "Red?" ) %>
+    <%= wikiscript_sort_header_tag('modal?',    :caption => "Modal?" ) %>
+    <%= wikiscript_sort_header_tag('author_id', :caption => l(:field_author)) %>
+  </tr></thead>
+  <tbody>
+    <%- for script in @scripts %>
+      <tr class="<%= script.css_classes %>">
+        <td><%= link_to script.id, wiki_page_path(script) %></td>
+        <td><%= link_to script.type, wiki_page_path(script) %></td>
+        <td><%= link_to script.title, wiki_page_path(script) %></td>
+        <td><%= link_to format_object(script.klass), wiki_page_path(script) %></td>
+        <td><%= link_to script.status, wiki_page_path(script) %></td>
+        <td><%= link_to script.ext, wiki_page_path(script) %></td>
+        <td><%= link_to format_object(script.red?), wiki_page_path(script) %></td>
+        <td><%= link_to format_object(script.modal?), wiki_page_path(script) %></td>
+        <td><%= link_to script.author, user_path(script.author_id) %></td>
+      </tr>
+    <%- end %>
+  </tbody>
+</table>
+</div>
+
+<% html_title(l(:label_wikiscripts)) -%>

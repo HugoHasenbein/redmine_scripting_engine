@@ -1,0 +1,5 @@
+<script>
+$( document ).ready(function() {
+$(".contextual .drdn .drdn-items").prepend('<%= escape_javascript render :partial => "hooks/redmine_scripting_engine/contextual_menu", :locals => local_assigns %>');
+});
+</script>

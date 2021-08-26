@@ -1,0 +1,106 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+ru:
+  # ---------- General Settings --------------
+  # Plugin names, etc.
+  project_module_redmine_scripting_engine: "Скриптовый движок"
+  
+  # ---------- Plugin Settings ---------------
+  label_wikiscripts_root:                  "Корневая страница Викискриптов"
+  help_wikiscripts_root:                   "Вики-страница, под которой расположены вики-скрипты"
+  help_lock_wikiscripts:                   "Заблокировать все страницы Викискрипта"
+  label_inherit_wikiscripts:               "Наследовать викискрипты от проектов-предков"
+  help_inherit_wikiscripts:                "Должны ли викискрипты наследоваться в иерархии проекта?"
+  label_forbidden_attributes:              "Фильтр полей"
+  help_forbidden_attributes:               "Глобальный фильтр для фильтрации полей с информацией, имеющей отношение к безопасности, например, паролем"
+  help_issues_context_menu:                "Активировать контекстное меню Викискрипта для задания в представлении индекса"
+  label_time_entries:                      "Временные записи"
+  label_associations:                      "Ассоциации базы данных"
+  label_enable_html:                       "Включить HTML"
+  help_enable_html:                        "Включить HTML в качестве формата вывода в скриптах и макросах вики"
+  label_enable_mime:                       "Включить MIME"
+  help_enable_mime:                        "Включить MIME в качестве формата вывода в викискриптах и макросах"
+  help_time_entries_context_menu:          "Активировать контекстное меню Викискриптов для записей времени в представлении индекса"
+  help_repositories_context_menu:          "Активировать Викискрипты для репозиториев, правый верхний угол"
+  help_contacts_context_menu:              "Активировать Викискрипты для контактов (плагин Redmine CRM)"
+  help_issue_attachments_context_menu:     "Активировать Викискрипты для вложений к заданиям (плагин Redmine Issue Attachments)"
+  help_associations_select:                "Выберите ассоциации баз данных, которые должны быть доступны в вики-скрипте. В зависимости от плагина, могут быть добавлены ассоциации баз данных, которые могут содержать важные для безопасности данные и не должны быть видны. Доступность ассоциаций баз данных, отмеченных *, ограничена правами доступа пользователя."
+  help_attributes_filter:                  "Черный список атрибутов, которые не должны передаваться в качестве аргументов, например, пароль. Введите список, разделенный пробелами, точкой с запятой или запятыми."
+  help_site_password:                      "Пароль сайта, который необходимо ввести перед началом работы с Redmine (как установлено, например, в .htpasswd)"
+  help_site_user:                          "Пользователь сайта, который должен быть введен перед Redmine (как установлено в .htpasswd, например)"
+  help_wikiscripts_export:                 "Экспортировать все викискрипты проекта в сжатый файл"
+  help_wikiscripts_import:                 "Импортировать викискрипты, которые были ранее экспортированы"
+  help_unregister_class:                   "Снять с регистрации класс"
+  
+  # ---------- Permission Settings -----------
+  # Permission settings in Administration -> Roles and Permissions
+  permission_run_scripts:                  "Запускать зеленые скрипты"
+  permission_run_red_scripts:           "Запускать красные скрипты"
+  permission_run_html_scripts:             "Выполнение сценариев HTML"
+  permission_run_mime_scripts:             "Выполнение сценариев MIME"
+  permission_run_tries:                    "Тестировать скрипты"
+  
+  permission_run_snippets:                 "Запуск сниппетов"
+  permission_run_fiddles:                  "Запускать скрипты"  
+  permission_run_html_fiddles:             "Запускать html-скрипты"  
+  permission_run_mime_fiddles:             "MЗапускать MIME-скрипты"
+  
+  # ---------- Labels ------------------------
+  label_wikiscript:                        "Викискрипт"
+  label_wikiscripts:                       "Викискрипты"
+  label_snippet:                           "Сниппет"
+  label_fiddle:                            "Скрипка"
+  label_context_menus:                     "Контекстные меню"
+  label_scripts:                           "Зеленые скрипты"
+  label_no_scripts:                        "Нет зеленых скриптов"
+  label_danger_scripts:                    "Красные скрипты"
+  label_no_danger_scripts:                 "Нет красных скриптов"
+  label_import_export:                     "Импорт/экспорт"
+  
+  label_red:                               "Красный"
+  label_green:                             "Зеленый"
+  label_ran_script_at_singular:            "Выполнил %{level}скрипт '%{name}' с одной %{model}"
+  label_ran_script_at_plural:              "Выполнил %{level}скрипт '%{name}' с %{count} %{model}"
+  label_ran_script:                        "Выполнил %{level}скрипт '%{name}'"
+  
+  # ---------- Notices ------------------------
+  notice_inapproriate_type:                "Некорректный вызов"
+  notice_syntax_not_supported:             "Синтаксис языка '%{язык}' не поддерживается"
+  notice_code_not_runnable:                "Запуск кода '%{язык}' не поддерживается"
+  notice_only_wikipage_supported:          "Этот макрос работает только на вики-страницах"
+  notice_invalid_file:                     "Файл недействителен"
+  notice_file_imported:                    "Викискрипт успешно импортирован"
+  notice_html_not_permitted:               "Запуск HTML-скрипок запрещен"  
+  notice_mime_not_permitted:               "Запуск MIME-скрипок запрещен"
+  notice_class_is_not_a_model:             "Класс %{klass} не является моделью базы данных"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "Попробовать"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "EmptyClass"
+  label_empty_classes:                     "EmptyClasses"
+  label_empty_class_plural:                "EmptyClasses"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "Вики-контенты"
+  label_journal_plural:                    "Журналы"

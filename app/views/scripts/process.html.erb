@@ -1,0 +1,19 @@
+<%-
+    ##
+    # this is a copy of application_controller back_url
+    # third party controllers do not necessarily set 
+    # @back, so we set it here
+    #
+    url = params[:back_url]
+    if url.nil? && referer = request.env['HTTP_REFERER']
+      url = CGI.unescape(referer.to_s)
+    end
+%>
+<h2><%= @model_name %></h2>
+<p>
+  <%= link_to( l(:button_back), url) if url %>
+</p>
+
+<%= render :partial => "process" %>
+
+<% html_title  @model_name %>

@@ -1,0 +1,175 @@
+<div class="contextual"><span id="toggler" class="icon icon-settings" onclick="$('#advanced_settings').toggle();"> </span></div>
+<fieldset class="box tabular settings"><legend><%= l(:label_general) %></legend>
+  <p>
+    <%= label_tag( 'settings[wikiscripts_root]', l(:label_wikiscripts_root)) %>
+    <%= text_field_tag 'settings[wikiscripts_root]', settings['wikiscripts_root'] %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_wikiscripts_root").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_wikiscripts_root" class="info" style="display: none;">
+      <em class="info"><%= l(:help_wikiscripts_root) %></em>
+    </span>
+  </p>
+  <p>
+    <%= label_tag( 'settings[lock_wikiscripts]', l(:button_lock)) %>
+    <%= check_box_tag 'settings[lock_wikiscripts]', 1, false %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_lock_wikiscripts").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_lock_wikiscripts" class="info" style="display: none;">
+      <em class="info"><%= l(:help_lock_wikiscripts) %></em>
+    </span>
+  </p>
+  <p>
+    <%= label_tag( 'settings[inherit_wikiscripts]', l(:label_inherit_wikiscripts)) %>
+    <%= check_box_tag 'settings[inherit_wikiscripts]', 1, settings['inherit_wikiscripts'].to_i > 0 %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_inherit_wikiscripts").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_inherit_wikiscripts" class="info" style="display: none;">
+      <em class="info"><%= l(:help_inherit_wikiscripts) %></em>
+    </span>
+  </p>
+  
+  <p>
+    <%= label_tag( 'settings[forbidden_attributes_filter]', l(:label_forbidden_attributes)) %>
+    <%= text_field_tag 'settings[forbidden_attributes_filter]', settings['forbidden_attributes_filter'] %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_forbidden_attributes_filter").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_forbidden_attributes_filter" class="info" style="display: none;">
+      <em class="info"><%= l(:help_forbidden_attributes) %></em>
+    </span>
+  </p>
+  
+  <p>
+    <%= label_tag( 'settings[site_user]', l(:label_user)) %>
+    <%= text_field_tag 'settings[site_user]', settings['site_user'] %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_site_user").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_site_user" class="info" style="display: none;">
+      <em class="info"><%= l(:help_site_user) %></em>
+    </span>
+  </p>
+
+  <p>
+    <%= label_tag( 'settings[site_password]', l(:field_password)) %>
+    <%= password_field_tag 'settings[site_password]', settings['site_password'] %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_site_password").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_site_password" class="info" style="display: none;">
+      <em class="info"><%= l(:help_site_password) %></em>
+    </span>
+  </p>
+  
+</fieldset>
+
+<br/>
+
+<fieldset class="box tabular settings"><legend><%= l(:label_wikiscripts) %></legend>
+  <p>
+    <%= label_tag( 'settings[enable_html]', l(:label_enable_html)) %>
+    <%= check_box_tag 'settings[enable_html]', 1, settings['enable_html'].to_i > 0 %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_enable_html").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_enable_html" class="info" style="display: none;">
+      <em class="info"><%= l(:help_enable_html) %></em>
+    </span>
+  </p>
+  
+  <p>
+    <%= label_tag( 'settings[enable_mime]', l(:label_enable_mime)) %>
+    <%= check_box_tag 'settings[enable_mime]', 1, settings['enable_mime'].to_i > 0 %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_enable_mime").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_enable_mime" class="info" style="display: none;">
+      <em class="info"><%= l(:help_enable_mime) %></em>
+    </span>
+  </p>
+  
+</fieldset>
+
+<br/>
+  
+<!-- context menus -->
+<fieldset class="box tabular settings"><legend><%= l(:label_context_menus) %></legend>
+  <p>
+    <%= label_tag( "settings[issue_context_menu]", l(:label_issue_plural)) %>
+    <%= check_box_tag "settings[issue_context_menu]", 1, settings["issue_context_menu"].to_i > 0  %>
+  </p>
+  <p>
+    <%= label_tag( "settings[time_entry_context_menu]", l(:label_time_entry_plural)) %>
+    <%= check_box_tag "settings[time_entry_context_menu]", 1, settings["time_entry_context_menu"].to_i > 0  %>
+  </p>
+  
+  <%- if Redmine::Plugin.installed?("redmine_issue_attachments") %>
+  <p>
+    <%= label_tag( "settings[issue_attachment_context_menu]", l(:label_issue_attachment_plural)) %>
+    <%= check_box_tag "settings[issue_attachment_context_menu]", 1, settings["issue_attachment_context_menu"].to_i > 0  %>
+  </p>
+  <%- end %>
+  
+  <%- if Redmine::Plugin.installed?("redmine_contacts") %>
+  <p>
+    <%= label_tag( "settings[contact_context_menu]", l(:label_contact_plural)) %>
+    <%= check_box_tag "settings[contact_context_menu]", 1, settings["contact_context_menu"].to_i > 0  %>
+  </p>
+  <%- end %>
+  
+</fieldset>
+
+<%= content_tag(:span, :id => "advanced_settings", :style => settings['advanced_mode'].to_i > 0 ? "" : "display:none;" ) do %>
+<%= hidden_field_tag "settings[advanced_mode]", settings['advanced_mode'] %>
+<br/>
+
+<!-- model associations -->
+<fieldset class="box tabular settings"><legend><%= l(:label_associations) %></legend>
+  <%- settings["registered_classes"].keys.sort{|k1,k2| l("label_#{k1}_plural".to_sym, :default => k1.humanize) <=> l("label_#{k2}_plural".to_sym, :default => k2.humanize)}.each do |registered_class| %>
+    <%- if klass = registered_class.camelcase.safe_constantize %>
+      <%= object_associations_chooser( klass, local_assigns ) %>
+    <%- else %>
+      <p><%= registered_class %></p>
+    <%- end %>
+  <%- end %>
+  
+  <p>
+    <%= label_tag( 'settings[register_classes]', l(:label_register)) %>
+    <%= select_tag 'settings[register_classes]', scriptable_classes_for_select, :include_blank => '' %>
+  </p>
+</fieldset>
+
+<!-- reset -->
+<fieldset class="box tabular settings"><legend><%= l(:button_reset) %></legend>
+  <p>
+    <%= label_tag( "settings[reset]", l(:button_reset)) %>
+    <%= check_box_tag "settings[reset]", 1, settings["reset"].to_i > 0  %>
+  </p>
+</fieldset>
+<%- end %>
+
+<%= javascript_tag do %>
+$("a[data-expands]").click(function(e){
+  e.preventDefault();
+  var target = $($(this).attr("data-expands"));
+  if (target.attr("multiple")) {
+    $(this).find('span').switchClass('icon-toggle-minus', 'icon-toggle-plus');
+    target.attr("multiple", false); target.removeAttr("size");
+    /* target.find("option[value=all]").show(); */
+    target.prepend("<option value='all'><%= l(:label_all) %></option>")
+  } else {
+    $(this).find('span').switchClass('icon-toggle-plus', 'icon-toggle-minus');
+    target.attr("multiple", true); target.attr("size", 10);
+    /* target.find("option[value=all]").attr("selected", false).hide(); */
+    target.find("option[value=all]").remove();
+  }
+});
+function exportWiki(elem) {
+  var value = $(elem).val();
+  if( value ) {
+    window.location.href = `<%= projects_path %>/${value}/wiki_ports/export`;
+  }
+}
+$('#toggler').on('click', function() {
+    var hiddenField = $('#settings_advanced_mode'),
+    val = hiddenField.val();
+    hiddenField.val(val === "1" ? "" : "1");
+});
+
+<% end %>
+

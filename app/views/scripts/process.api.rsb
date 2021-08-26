@@ -1,0 +1,3 @@
+api.error do
+  api.error "cannot call each on api"
+end

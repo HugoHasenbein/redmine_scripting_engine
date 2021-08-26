@@ -1,0 +1,106 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+en:
+  # ---------- General Settings --------------
+  # Plugin names, etc.
+  project_module_redmine_scripting_engine: "Scripting-Engine"
+  
+  # ---------- Plugin Settings ---------------
+  label_wikiscripts_root:                  "Wikiscripts root page"
+  help_wikiscripts_root:                   "Wiki page under which the wiki scripts are located"
+  help_lock_wikiscripts:                   "Lock all Wikiscript pages"
+  label_inherit_wikiscripts:               "Inherit Wikiscripts from ancestor projects"
+  help_inherit_wikiscripts:                "Should Wikiscripts be inherited within Project hieracrchy?"
+  label_forbidden_attributes:              "Field filter"
+  help_forbidden_attributes:               "Global filter to filter fields with security relevant information, e.g. password"
+  help_issues_context_menu:                "Activate Wikiscripts for Issue context menu in index view"
+  label_time_entries:                      "Time Entries"
+  label_associations:                      "Database associations"
+  label_enable_html:                       "Enable HTML"
+  help_enable_html:                        "Enable HTML as output format in wiki scripts and macros."
+  label_enable_mime:                       "Enable MIME"
+  help_enable_mime:                        "Enable MIME as output format in wikiscripts and macros."
+  help_time_entries_context_menu:          "Activate Wikiscripts for Time Entries context menu in index view"
+  help_repositories_context_menu:          "Activate Wikiscripts for Repositories, right upper corner"
+  help_contacts_context_menu:              "Activate Wikiscripts for Contacts (Redmine CRM Plugin)"
+  help_issue_attachments_context_menu:     "Activate Wikiscripts for Issue Attachments (Redmine Issue Attachments Plugin)"
+  help_associations_select:                "Select the database associations that should be available in the wiki script. Depending on the plugin, database associations can be added that may contain security-relevant data and should not be visible. Availability of database associations marked with * is limited by user's access rights."
+  help_attributes_filter:                  "Blacklist of attributes, which shall not be passed as arguments, f.i. password. Type in space-, semicolon- or comma separated list"
+  help_site_password:                      "Site password that must be entered before Redmine (as set in .htpasswd, for example)"
+  help_site_user:                          "Site user that must be entered before Redmine (as set in .htpasswd, for example)"
+  help_wikiscripts_export:                 "Export all wikiscripts of a project as a compressed file"
+  help_wikiscripts_import:                 "Import wikiscripts that have been previously exported"
+  help_unregister_class:                   "Unregister Class"
+  
+  # ---------- Permission Settings -----------
+  # Permission settings in Administration -> Roles and Permissions
+  permission_run_scripts:                  "Run Greenscripts"
+  permission_run_red_scripts:           "Run Redscripts"
+  permission_run_html_scripts:             "Run HTML-scripts"
+  permission_run_mime_scripts:             "Run MIME-scripts"
+  permission_run_tries:                    "Test scripts"
+  
+  permission_run_snippets:                 "Run Snippets"
+  permission_run_fiddles:                  "Run Fiddles"
+  permission_run_html_fiddles:             "Run HTML-Fiddles"
+  permission_run_mime_fiddles:             "Run MIME-Fiddles"
+  
+  # ---------- Labels ------------------------
+  label_wikiscript:                        "Wikiscript"
+  label_wikiscripts:                       "Wikiscripts"
+  label_snippet:                           "Snippet"
+  label_fiddle:                            "Fiddle"
+  label_context_menus:                     "Context menus"
+  label_scripts:                           "Greenscripts"
+  label_no_scripts:                        "No Greenscripts"
+  label_danger_scripts:                    "Redscripts"
+  label_no_danger_scripts:                 "No Redscripts"
+  label_import_export:                     "Import/Export"
+  
+  label_red:                               "Red"
+  label_green:                             "Green"
+  label_ran_script_at_singular:            "Ran %{level}script '%{name}' with one %{model}"
+  label_ran_script_at_plural:              "Ran %{level}script '%{name}' with %{count} %{model}"
+  label_ran_script:                        "Ran %{level}script '%{name}'"
+  
+  # ---------- Notices ------------------------
+  notice_inapproriate_type:                "Inapproriate call"
+  notice_syntax_not_supported:             "Language syntax of '%{language}' is not supported"
+  notice_code_not_runnable:                "Running of '%{language}' is not supported"
+  notice_only_wikipage_supported:          "This macro works on wiki pages only"
+  notice_invalid_file:                     "File is not valid"
+  notice_file_imported:                    "Wikiscripts imported successfully"
+  notice_html_not_permitted:               "Running HTML-Fiddles is not permitted"
+  notice_mime_not_permitted:               "Running MIME-Fiddles is not permitted"
+  notice_class_is_not_a_model:             "Class %{klass} is not a database model"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "Try"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "LeerKlasse"
+  label_empty_classes:                     "LeerKlassen"
+  label_empty_class_plural:                "LeerKlassen"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "Wiki-Contents"
+  label_journal_plural:                    "Journals"

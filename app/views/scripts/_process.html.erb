@@ -1,0 +1,85 @@
+<%= render_flash_messages %>
+<%- flash.clear %>
+<h2><%= @script.title %></h2>
+
+<%- if @objects.length > 0 %>
+<div id="import-details">
+  <div id="import-progress"><div id="progress-label">0 / <%= @objects.length %></div></div>
+</div>
+<%- end %>
+
+<%- @objects.reverse.each do |object| %>
+  <!-- model containers -->
+  <div id="<%= @model %>-<%= object.id %>" style="display:none;"></div>
+<%- end %>
+<%- if @objects.length == 0 %>
+  <!-- container for running script without objects -->
+  <div id="<%= @model %>-0" style="display:none;"></div>
+<%- end %>
+
+<%= javascript_tag do %>
+
+var p = 0;
+
+$(document).ready(function(){
+
+  /* setup progress bar */
+  $('#import-details').addClass('ajax-loading');
+  $('#import-progress').progressbar({value: 0, max: <%= @objects.length %>});
+  
+  /* show progress bar */ 
+  $('#import-details').show();
+  
+  /* show ajax indicator */
+  $('#ajax-indicator').show();
+  
+  /* do each object request one-by-one and update progress bar */
+  <%- @objects.each_with_index do |object, i| %>
+    function ajax<%= i+1 %>() {
+      $.ajax({
+        url: '<%= _run_project_script_path(@project, @page.id) %>',
+        method: 'GET',
+        dataType: 'script',
+        data: <%= { object: @embedding, objects: {class: @model_class, ids: [object.id]}}.merge(@modal).merge(eparams: @eparams).to_json.html_safe %>,
+        success: function(result) { progress(); <%= "ajax#{i+2}();".html_safe if @sync && @objects.length >= i+2 %>},
+        error:   function(result) { progress(); show_error('<%= "##{@model}-#{object.id}" %>'); <%= " ajax#{i+2}();".html_safe if @sync && @objects.length >= i+2 %>}
+        
+      });
+    }
+  <%- end %>
+    $('#ajax-indicator').show();
+  <%- if @objects.length == 0 %>
+    function ajax1() {
+      $.ajax({
+        url: '<%= _run_project_script_path(@project, @page.id) %>',
+        method: 'GET',
+        dataType: 'script',
+        data: <%= { object: @embedding }.merge(@modal).merge(eparams: @eparams).to_json.html_safe %>,
+        success: function(result) { $('#ajax-indicator').hide();},
+        error:   function(result) { show_error('<%= "##{@model}-0" %>'); $('#ajax-indicator').hide();}
+      });
+    }
+    ajax1();
+  <% elsif !@sync %>
+  <%- @objects.each_with_index do |object, i| %>
+    ajax<%= i+1 %>();
+  <%- end %>
+  <% elsif @sync %>
+    ajax1();
+  <%- end %>
+  
+});
+
+
+function progress() {
+  p += 1;
+  $('#import-progress').progressbar({value: p});
+  $('#progress-label').text( p + ' / <%= @objects.length %>');
+  if (p >= <%= @objects.length %>) { $('#import-details').hide(); $('#ajax-indicator').hide(); }
+}
+
+function show_error(tag) {
+  $(tag).html("<span style='color:red;'>Error</span>");
+  $(tag).show();
+}
+<%- end %>

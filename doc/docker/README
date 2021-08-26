@@ -1,0 +1,5 @@
+##########################################################################################
+# buld the docker image by running the below command in this directory
+##########################################################################################
+
+docker build -t "redmine_scripting_engine" .

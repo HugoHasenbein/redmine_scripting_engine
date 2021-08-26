@@ -1,0 +1,41 @@
+<% class_name = klass.name.underscore %>
+<!-- <% class_name.pluralize %> -->
+<%- if settings.dig("registered_classes", "#{class_name}") %>
+  <fieldset class="box tabular settings"><legend><%= l("label_#{class_name}_plural".to_sym, :default => class_name.pluralize.humanize ) %></legend>
+  <span id="<%= class_name %>_associations_select" class="info" >
+  <p>
+    <%- if klass.ancestors.include?(ActiveRecord::Base) %>
+    
+      <%= label_tag( "settings[registered_classes][#{class_name}][assocications]", l(:label_associations)) %>
+      <%= select_associations("settings[registered_classes][#{class_name}][associations][]", klass.reflect_on_all_associations, settings["registered_classes"]["#{class_name}"]["associations"], :class => "expandable" ) %>
+      <a href="#" data-expands="#settings_registered_classes_<%= class_name %>_associations_"><span class="toggle-multiselect icon-only icon-toggle-plus"></span></a>
+      <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick="$('#help_<%= class_name %>_associations_select').toggle(); return false;"><%= l(:label_help) %></a>
+      <br>
+      <span id="help_<%= class_name %>_associations_select" class="info" style="display: none;">
+        <em class="info"><%= l(:help_associations_select) %></em>
+      </span>
+      
+      <br>
+      <%= label_tag( "settings[registered_classes][#{class_name}][attributes_filter]", l(:button_filter)) %>
+      <%= text_field_tag "settings[registered_classes][#{class_name}][attributes_filter]", settings["registered_classes"]["#{class_name}"]["attributes_filter"] %>
+      <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick="$('#help_<%= class_name %>_attributes_filter').toggle(); return false;"><%= l(:label_help) %></a>
+      <br>
+      <span id="help_<%= class_name %>_attributes_filter" class="info" style="display: none;">
+        <em class="info"><%= l(:help_attributes_filter) %></em>
+      </span>
+    
+    <%- else %>
+      <%= l(:notice_class_is_not_a_model, :klass => klass.name ) %>
+    <%- end %>
+    
+    <br>
+    <%= label_tag( "settings[registered_classes][#{class_name}][unregister]", l(:button_delete)) %>
+    <%= check_box_tag "settings[registered_classes][#{class_name}][unregister]", 1, settings["registered_classes"]["#{class_name}"]["unregister"].to_i > 0 %>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick="$('#help_<%= class_name %>_unregister').toggle(); return false;"><%= l(:label_help) %></a>
+    <br>
+    <span id="help_<%= class_name %>_unregister" class="info" style="display: none;">
+      <em class="info"><%= l(:help_unregister_class) %></em>
+    </span>
+  </p>
+  </fieldset>
+<%- end %>

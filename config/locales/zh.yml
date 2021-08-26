@@ -1,0 +1,106 @@
+# encoding: utf-8
+#
+# Redmine plugin to execute untrusted code
+#
+# Copyright © 2021 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+zh:
+  # ---------- General Settings --------------
+  # Plugin names, etc.
+  project_module_redmine_scripting_engine: "脚本引擎"
+  
+  # ---------- Plugin Settings ---------------
+  label_wikiscripts_root:                  "Wikiscripts根页面"
+  help_wikiscripts_root:                   "维基脚本所处的维基页面"
+  help_lock_wikiscripts:                   "锁定所有Wikiscript页面"
+  label_inherit_wikiscripts:               "从祖先的项目中继承维基脚本"
+  help_inherit_wikiscripts:                "维基脚本是否应该在项目层次中被继承？"
+  label_forbidden_attributes:              "字段过滤器"
+  help_forbidden_attributes:               "全局过滤器，用于过滤具有安全相关信息的字段，例如密码"
+  help_issues_context_menu:                "在索引视图中激活Wikiscripts的问题上下文菜单"
+  label_time_entries:                      "时间条目"
+  label_associations:                      "数据库关联"
+  label_enable_html:                       "启用HTML"
+  help_enable_html:                        "在维基脚本和宏中启用HTML作为输出格式。"
+  label_enable_mime:                       "启用MIME"
+  help_enable_mime:                        "在维基脚本和宏中启用MIME作为输出格式。"
+  help_time_entries_context_menu:          "在索引视图中激活Wikiscripts for Time Entries的上下文菜单"
+  help_repositories_context_menu:          "激活库房的维基脚本，右上角"
+  help_contacts_context_menu:              "激活联系人的维基脚本（Redmine CRM插件）"
+  help_issue_attachments_context_menu:     "激活问题附件的维基脚本（Redmine问题附件插件）"
+  help_associations_select:                "选择维基脚本中应该有的数据库关联。根据该插件，可以添加可能包含安全相关数据的数据库关联，并且不应可见。标有*的数据库关联的可用性受限于用户的访问权限。"
+  help_attributes_filter:                  "属性的黑名单，这些属性不应作为参数传递，例如密码。键入空格、分号或逗号分隔的列表"
+  help_site_password:                      "在Redmine之前必须输入的网站密码（例如在.htpasswd中设置的）"
+  help_site_user:                          "必须在Redmine之前输入的网站用户（例如，在.htpasswd中设置的）"
+  help_wikiscripts_export:                 "将一个项目的所有wikiscripts导出为一个压缩文件"
+  help_wikiscripts_import:                 "导入之前已经导出的wikiscripts"  
+  help_unregister_class:                   "取消注册类"
+  
+   # ---------- Permission Settings -----------
+  # Permission settings in Administration -> Roles and Permissions
+  permission_run_scripts:                  "运行绿色脚本"
+  permission_run_red_scripts:           "运行红色脚本"
+  permission_run_html_scripts:             "执行HTML脚本"
+  permission_run_mime_scripts:             "执行MIME脚本"
+  permission_run_tries:                    "测试脚本"
+  
+  permission_run_snippets:                 "运行snippets"
+  permission_run_fiddles:                  "运行fiddles"
+  permission_run_html_fiddles:             "运行htmlfiddles"
+  permission_run_mime_fiddles:             "运行MIMEfiddles"
+  
+  # ---------- Labels ------------------------
+  label_wikiscript:                        "维基脚本"
+  label_wikiscripts:                       "维基脚本"
+  label_snippet:                           "缩略语"
+  label_fiddle:                            "鼓动"
+  label_context_menus:                     "上下文菜单"
+  label_scripts:                           "绿色脚本"
+  label_no_scripts:                        "没有绿色脚本"
+  label_danger_scripts:                    "红色脚本"
+  label_no_danger_scripts:                 "没有红色脚本"
+  label_import_export:                     "进口/出口"
+  
+  label_red:                               "红色"
+  label_green:                             "绿色"
+  label_ran_script_at_singular:            "使用%{level}脚本 '%{name}' 和一个%{model}进行操作"
+  label_ran_script_at_plural:              "使用%{level}脚本 '%{name}' 和%{count} %{model}进行操作"
+  label_ran_script_at_plural:              "使用%{level}脚本 '%{name}'"
+  
+  # ---------- Notices ------------------------
+  notice_inapproriate_type:                "错误的调用"
+  notice_syntax_not_supported:             "不支持'%{language}'的语言语法"
+  notice_code_not_runnable:                "不支持'%{language}'的运行"
+  notice_only_wikipage_supported:          "此宏仅适用于wiki页面"
+  notice_invalid_file:                     "文件是无效的"
+  notice_file_imported:                    "Wikiscripts导入成功"
+  notice_html_not_permitted:               "运行HTML-Fiddles是不允许的"
+  notice_mime_not_permitted:               "运行MIME-Fiddles是不允许的"
+  notice_class_is_not_a_model:             "类%{klass}不是一个数据库模型"
+  
+  # ---------- Macros ------------------------
+  button_try:                              "尝试"
+  
+  # ---------- EmptyClass --------------------
+  label_empty_class:                       "EmptyClass"
+  label_empty_classes:                     "EmptyClasses"
+  label_empty_class_plural:                "EmptyClasses"
+  
+  # ---------- Redmine's Classes With No Names-
+  label_wiki_content_plural:               "Wiki-Contents"
+  label_journal_plural:                    "日记"
