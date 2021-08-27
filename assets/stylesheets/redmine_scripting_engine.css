@@ -157,18 +157,28 @@ div.src {
     margin-left: 2px;
     border-radius: 2px;
     overflow-y: visible;
+    
+    background-color: #fafafa;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    width:auto;
 }
-div.wiki pre.src {
+div.wiki pre.src, pre.src {
     position: relative;
     overflow-x: visible;
     overflow-y: visible;
-    padding-top: 20px;
+    padding: 20px 8px 8px 8px;
     text-align: left;
+    
+    background-color: #fafafa;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    width:auto;
 }
-div.wiki pre.button {
+div.wiki pre.button, pre.button {
     text-align:left;
 }
-div.wiki div.pre.src {
+div.wiki div.pre.src, div.pre.src {
     padding-top: 20px;
     text-align:left;
     font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace
